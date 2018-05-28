@@ -1,0 +1,24 @@
+{
+  "description": "scattered clouds",
+  "location": {
+    "id": 2950159,
+    "city": "Berlin",
+    "country": "DE",
+    "coordinate": {
+      "longitude": 13.41,
+      "latitude": 52.52
+    }
+  },
+  "temperature": {
+    "current": 21,
+    "minimum": 21,
+    "maximum": 21
+  },
+  "humidity": 49,
+  "pressure": 1024,
+  "visibility": 10000,
+  "wind": {
+    "speed": 5.7,
+    "degree": 80
+  }
+}

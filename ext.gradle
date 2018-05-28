@@ -1,0 +1,10 @@
+ext {
+  springBootVersion = "2.0.2.RELEASE"
+  springIntegrationVersion = "4.3.12.RELEASE"
+  springIntegrationJavaDSLVersion = "1.2.1.RELEASE"
+  httpclientVersion = "4.5.2"
+  spockVersion = "1.1-groovy-2.4"
+  restitoVersion = "0.9.1"
+  jacksonVersion = "2.9.5"
+  lombokVersion = "1.16.20"
+}

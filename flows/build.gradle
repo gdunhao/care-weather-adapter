@@ -1,0 +1,21 @@
+plugins {
+    id "java"
+}
+
+group "com.care.weather.adapter"
+version "0.0.1-SNAPSHOT"
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+  compile project(":client")
+  compile project(":care-model")
+  compile "org.springframework.boot:spring-boot-starter-web:${springBootVersion}"
+  compile "org.springframework.boot:spring-boot-starter-integration:${springBootVersion}"
+  compile "org.springframework.boot:spring-boot-starter-cache:${springBootVersion}"
+  testCompile "org.springframework.boot:spring-boot-starter-test:${springBootVersion}"
+}
