@@ -26,15 +26,11 @@ public class WeatherController {
   @GetMapping
   ResponseEntity fetchWeather(@RequestParam String city, @RequestParam String country) {
 
-    System.out.println("Requesting");
-
     WeatherRequest weatherRequest = new WeatherRequest();
     weatherRequest.setCity(city);
     weatherRequest.setCountry(country);
 
     WeatherResponse response = weatherService.fetchWeather(weatherRequest);
-
-    System.out.println("Response");
 
     HttpHeaders responseHeaders = createResponseHeader();
 
