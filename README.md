@@ -70,6 +70,7 @@ Follows the list of futures improvements to be applied:
   - Create a Spring Cloud Config project to store the application properties.
   - Encrypt the API key.
   - Set up circuit breakers on the communication with "Open Weather API".
+  - Use Spring RestDocs to create the project documentation.
   - Create a Docker image.
 
 ## Observation
