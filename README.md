@@ -19,7 +19,7 @@ It will start the SpringBoot server and the service will be running at ```localh
 
 ## Endpoints
 
-This project will be running with the classpath ```/care-weather-adapter```.
+This project will be running with the context-path ```/care-weather-adapter```.
 
 The endpoint provided is:
 
@@ -62,3 +62,11 @@ The response JSON provided will be:
 ```
 
 ## Future improvements
+
+Follows the list of futures improvements to be applied:
+
+  - Create a cache on the provided endpoint.
+  - Separate the modules "care-model" and "open-weather-model" to be separate and versioned artifacts.
+  - Create a Spring Cloud Config project to store the application properties.
+  - Encrypt the API key.
+  - Create a Docker image.
