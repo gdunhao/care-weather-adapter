@@ -70,3 +70,7 @@ Follows the list of futures improvements to be applied:
   - Create a Spring Cloud Config project to store the application properties.
   - Encrypt the API key.
   - Create a Docker image.
+
+## Observation
+
+ - This project was created to provide data to the project "care-weather-app" (https://github.com/gdunhao/care-weather-app).
