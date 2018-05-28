@@ -69,6 +69,7 @@ Follows the list of futures improvements to be applied:
   - Separate the modules "care-model" and "open-weather-model" to be separate and versioned artifacts.
   - Create a Spring Cloud Config project to store the application properties.
   - Encrypt the API key.
+  - Set up circuit breakers on the communication with "Open Weather API".
   - Create a Docker image.
 
 ## Observation
