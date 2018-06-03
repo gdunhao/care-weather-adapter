@@ -1,0 +1,19 @@
+plugins {
+    id "java"
+}
+
+group "com.care.model"
+version "1.0-SNAPSHOT"
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile "com.fasterxml.jackson.core:jackson-annotations:${jacksonVersion}"
+    compileOnly "org.projectlombok:lombok:${lombokVersion}"
+    testCompile "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}"
+    testCompile "org.spockframework:spock-core:${spockVersion}"
+}
