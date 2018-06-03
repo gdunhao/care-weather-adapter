@@ -1,7 +1,0 @@
-rootProject.name = 'care-weather-adapter'
-include 'open-weather-model'
-include 'care-model'
-include 'client'
-include 'server'
-include 'flows'
-
