@@ -8,15 +8,19 @@ class LocationInformationResponseTransformerTest extends WeatherResponseTransfor
     def "Should add location information to weather response"() {
         given:
         WeatherResponse weatherResponse = new WeatherResponse()
-        WeatherRS weatherRS = givenValidWeatherRS()
 
         when:
         LocationInformationResponseTransformer.addLocationInformation(weatherRS, weatherResponse)
 
         then:
         weatherResponse.location
-        weatherResponse.location.id == 2950159
-        weatherResponse.location.city == "Berlin"
-        weatherResponse.location.country == "DE"
+        weatherResponse.location.id == locationId
+        weatherResponse.location.city == locationCity
+        weatherResponse.location.country == locationCountry
+
+        where:
+        weatherRS                   | locationId | locationCity | locationCountry
+        givenValidWeatherRS()       | 2950159    | "Berlin"     | "DE"
+        givenWeatherRSWithoutData() | null       | null         | null
     }
 }

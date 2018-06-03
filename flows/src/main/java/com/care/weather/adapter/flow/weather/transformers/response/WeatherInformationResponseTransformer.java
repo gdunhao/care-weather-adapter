@@ -6,7 +6,11 @@ import com.care.open.weather.model.weather.WeatherRS;
 public class WeatherInformationResponseTransformer {
 
     protected static void addWeatherInformation(WeatherRS weatherRS, WeatherResponse weatherResponse) {
-        weatherResponse.setDescription(weatherRS.getWeather().get(0).getDescription());
-        weatherResponse.setHumidity(weatherRS.getMain().getHumidity());
+        if (weatherRS.getWeather() != null && !weatherRS.getWeather().isEmpty()) {
+            weatherResponse.setDescription(weatherRS.getWeather().get(0).getDescription());
+        }
+        if (weatherRS.getMain() != null) {
+            weatherResponse.setHumidity(weatherRS.getMain().getHumidity());
+        }
     }
 }

@@ -8,15 +8,19 @@ class TemperatureInformationResponseTransformerTest extends WeatherResponseTrans
     def "Should add temperature information to weather response"() {
         given:
         WeatherResponse weatherResponse = new WeatherResponse()
-        WeatherRS weatherRS = givenValidWeatherRS()
 
         when:
         TemperatureInformationResponseTransformer.addTemperatureInformation(weatherRS, weatherResponse)
 
         then:
         weatherResponse.temperature
-        weatherResponse.temperature.current == 21.0
-        weatherResponse.temperature.minimum == 19.0
-        weatherResponse.temperature.maximum == 23.0
+        weatherResponse.temperature.current == currentTemperature
+        weatherResponse.temperature.minimum == minimumTemperature
+        weatherResponse.temperature.maximum == maximumTemperature
+
+        where:
+        weatherRS                   | currentTemperature | minimumTemperature | maximumTemperature
+        givenValidWeatherRS()       | 21.0               | 19.0               | 23.0
+        givenWeatherRSWithoutData() | null               | null               | null
     }
 }

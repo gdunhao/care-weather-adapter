@@ -8,13 +8,17 @@ class WindInformationResponseTransformerTest extends WeatherResponseTransformerB
     def "Should add wind information to weather response"() {
         given:
         WeatherResponse weatherResponse = new WeatherResponse()
-        WeatherRS weatherRS = givenValidWeatherRS()
 
         when:
         WindInformationResponseTransformer.addWindInformation(weatherRS, weatherResponse)
 
         then:
         weatherResponse.wind
-        weatherResponse.wind.speed == 5.7
+        weatherResponse.wind.speed == windSpeed
+
+        where:
+        weatherRS                   | windSpeed
+        givenValidWeatherRS()       | 5.7
+        givenWeatherRSWithoutData() | null
     }
 }

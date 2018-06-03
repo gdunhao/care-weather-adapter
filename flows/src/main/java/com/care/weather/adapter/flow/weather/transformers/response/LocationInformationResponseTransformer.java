@@ -10,7 +10,9 @@ public class LocationInformationResponseTransformer {
         Location location = new Location();
         location.setId(weatherRS.getId());
         location.setCity(weatherRS.getName());
-        location.setCountry(weatherRS.getSys().getCountry());
+        if (weatherRS.getSys() != null) {
+            location.setCountry(weatherRS.getSys().getCountry());
+        }
         weatherResponse.setLocation(location);
     }
 }

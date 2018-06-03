@@ -8,9 +8,12 @@ public class TemperatureInformationResponseTransformer {
 
     protected static void addTemperatureInformation(WeatherRS weatherRS, WeatherResponse weatherResponse) {
         Temperature temperature = new Temperature();
-        temperature.setCurrent(weatherRS.getMain().getTemp());
-        temperature.setMinimum(weatherRS.getMain().getTemp_min());
-        temperature.setMaximum(weatherRS.getMain().getTemp_max());
+        if (weatherRS.getMain() != null) {
+            temperature.setCurrent(weatherRS.getMain().getTemp());
+            temperature.setMinimum(weatherRS.getMain().getTemp_min());
+            temperature.setMaximum(weatherRS.getMain().getTemp_max());
+
+        }
         weatherResponse.setTemperature(temperature);
     }
 }

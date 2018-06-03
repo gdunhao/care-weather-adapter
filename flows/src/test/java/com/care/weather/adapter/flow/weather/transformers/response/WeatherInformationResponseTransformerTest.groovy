@@ -8,14 +8,18 @@ class WeatherInformationResponseTransformerTest extends WeatherResponseTransform
     def "Should add weather information to weather response"() {
         given:
         WeatherResponse weatherResponse = new WeatherResponse()
-        WeatherRS weatherRS = givenValidWeatherRS()
 
         when:
         WeatherInformationResponseTransformer.addWeatherInformation(weatherRS, weatherResponse)
 
         then:
         weatherResponse
-        weatherResponse.description == "scattered clouds"
-        weatherResponse.humidity == 49
+        weatherResponse.description == weatherDescription
+        weatherResponse.humidity == humidity
+
+        where:
+        weatherRS                   | weatherDescription | humidity
+        givenValidWeatherRS()       | "scattered clouds" | 49
+        givenWeatherRSWithoutData() | null               | null
     }
 }

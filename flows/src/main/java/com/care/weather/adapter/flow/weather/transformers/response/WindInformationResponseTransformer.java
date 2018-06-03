@@ -8,7 +8,9 @@ public class WindInformationResponseTransformer {
 
     protected static void addWindInformation(WeatherRS weatherRS, WeatherResponse weatherResponse) {
         Wind wind = new Wind();
-        wind.setSpeed(weatherRS.getWind().getSpeed());
+        if (weatherRS.getWind() != null) {
+            wind.setSpeed(weatherRS.getWind().getSpeed());
+        }
         weatherResponse.setWind(wind);
     }
 }

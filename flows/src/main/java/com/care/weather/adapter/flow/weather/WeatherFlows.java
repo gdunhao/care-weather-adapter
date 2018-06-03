@@ -28,6 +28,7 @@ public class WeatherFlows {
 
     @Bean(name = WEATHER_FLOW_NAME)
     IntegrationFlow weatherFlow() {
+
         return IntegrationFlows
                 .from(WEATHER_CHANNEL_NAME)
                 .transform(weatherRequestTransformer)
