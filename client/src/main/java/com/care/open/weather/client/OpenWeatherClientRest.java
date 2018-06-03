@@ -28,6 +28,7 @@ public class OpenWeatherClientRest implements OpenWeatherClient {
     }
 
     private String concatWithBaseUrl(String url) {
+
         return baseurl.concat(url);
     }
 }

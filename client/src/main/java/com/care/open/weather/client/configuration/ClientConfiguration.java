@@ -17,49 +17,46 @@ import org.springframework.web.client.RestTemplate;
 @ComponentScan("com.care.open.weather.client")
 class ClientConfiguration {
 
-  @Value("${httpclient.pooling.connection.default-max-per-route}")
-  Integer defaultMaxPerRoute;
+    @Value("${httpclient.pooling.connection.default-max-per-route}")
+    Integer defaultMaxPerRoute;
 
-  @Value("${httpclient.pooling.connection.max-total}")
-  Integer maxTotal;
+    @Value("${httpclient.pooling.connection.max-total}")
+    Integer maxTotal;
 
-  @Value("${httpclient.connection.timeout.millisec}")
-  Integer connectionTimeout;
+    @Value("${httpclient.connection.timeout.millisec}")
+    Integer connectionTimeout;
 
-  @Value("${httpclient.read.timeout.millisec}")
-  Integer readTimeout;
+    @Value("${httpclient.read.timeout.millisec}")
+    Integer readTimeout;
 
-  @Value("${httpclient.connectionReuse:true}")
-  Boolean connectionReuse;
+    @Value("${httpclient.connectionReuse:true}")
+    Boolean connectionReuse;
 
-  @Bean
-  RestTemplate restTemplate() {
+    @Bean
+    RestTemplate restTemplate() {
+        HttpClient httpClient = getHttpClientPoolingConnectionManager();
 
-    HttpClient httpClient = getHttpClientPoolingConnectionManager();
+        HttpComponentsClientHttpRequestFactory factory = new HttpComponentsClientHttpRequestFactory(httpClient);
+        factory.setConnectTimeout(connectionTimeout);
+        factory.setReadTimeout(readTimeout);
 
-    HttpComponentsClientHttpRequestFactory factory = new HttpComponentsClientHttpRequestFactory(httpClient);
-    factory.setConnectTimeout(connectionTimeout);
-    factory.setReadTimeout(readTimeout);
+        RestTemplate restTemplate = new RestTemplate(new BufferingClientHttpRequestFactory(factory));
+        restTemplate.setErrorHandler(new DefaultResponseErrorHandler());
 
-    RestTemplate restTemplate = new RestTemplate(new BufferingClientHttpRequestFactory(factory));
-    restTemplate.setErrorHandler(new DefaultResponseErrorHandler());
-
-    return restTemplate;
-  }
-
-  private HttpClient getHttpClientPoolingConnectionManager() {
-
-    PoolingHttpClientConnectionManager connectionManager = new PoolingHttpClientConnectionManager();
-    connectionManager.setDefaultMaxPerRoute(defaultMaxPerRoute);
-    connectionManager.setMaxTotal(maxTotal);
-
-    HttpClientBuilder httpClientBuilder = HttpClientBuilder.create().setConnectionManager(connectionManager);
-
-    if (!connectionReuse) {
-
-      httpClientBuilder.setConnectionReuseStrategy(NoConnectionReuseStrategy.INSTANCE);
+        return restTemplate;
     }
 
-    return httpClientBuilder.build();
-  }
+    private HttpClient getHttpClientPoolingConnectionManager() {
+        PoolingHttpClientConnectionManager connectionManager = new PoolingHttpClientConnectionManager();
+        connectionManager.setDefaultMaxPerRoute(defaultMaxPerRoute);
+        connectionManager.setMaxTotal(maxTotal);
+
+        HttpClientBuilder httpClientBuilder = HttpClientBuilder.create().setConnectionManager(connectionManager);
+
+        if (!connectionReuse) {
+            httpClientBuilder.setConnectionReuseStrategy(NoConnectionReuseStrategy.INSTANCE);
+        }
+
+        return httpClientBuilder.build();
+    }
 }
