@@ -1,0 +1,10 @@
+buildscript {
+    apply from: "file:ext.gradle"
+
+    repositories {
+        mavenCentral()
+    }
+}
+
+group 'com.care'
+version '1.0-SNAPSHOT'
